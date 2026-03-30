@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: desafiosicred
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - rede-sicred  
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: glaubersonsantos@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 12345
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - rede-sicred
+
+  app:
+    build: .
+    container_name: desafio_sicred
+    depends_on:
+      - postgres
+    networks:
+      - rede-sicred 
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/desafiosicred
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345      
+
+volumes:
+  pgdata:
+  
+networks:
+  rede-sicred:  
