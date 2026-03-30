@@ -88,7 +88,7 @@ Para executar o projeto, é necessário ter instalado:
 
 ### 🔹 Clonar o repositório
 
-git clone [https://github.com/Glaubersonsantos/desafio-sicred.git](https://github.com/Glaubersonsantos/desafio-sicred.git)
+git clone https://github.com/Glaubersonsantos/desafio-sicred.git
 cd desafio-sicred
 
 ---
@@ -117,6 +117,15 @@ docker-compose up --build
 ### 📘 Swagger (Documentação da API)
 
 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+---
+
+### 📘 pgAdmin
+
+[http://localhost:5050/](http://localhost:5050/)
+
+usuario: glaubersonsantos@gmail.com
+senha: 12345
 
 ---
 
