@@ -2,6 +2,17 @@
 
 ---
 
+## 🎯 Objetivo
+
+Esta API tem como objetivo gerenciar o processo de **contratação de crédito**, permitindo:
+
+* Registrar operações de crédito
+* Validar regras de negócio por produto e segmento
+* Integrar com serviço externo para autorização de contratação
+* Garantir resiliência em chamadas externas
+
+---
+
 ## 🚀 Tecnologias Utilizadas
 
 * **Java 17**
@@ -77,18 +88,27 @@ Para executar o projeto, é necessário ter instalado:
 
 ### 🔹 Clonar o repositório
 
-```bash id="v5n8ch"
-git clone https://github.com/Glaubersonsantos/desafio-sicred.git
+git clone [https://github.com/Glaubersonsantos/desafio-sicred.git](https://github.com/Glaubersonsantos/desafio-sicred.git)
 cd desafio-sicred
-```
 
 ---
 
 ### 🔹 Subir a aplicação
 
-```bash id="ff3p6y"
 docker-compose up --build
-```
+
+---
+
+### 🔹 Exemplo de requisição (Contratação de Crédito)
+
+{
+  "idAssociado": 22,
+  "valorOperacao": 5000,
+  "segmento": "AGRO",
+  "codigoProdutoCredito": "903C",
+  "codigoConta": "225",
+  "areaBeneficiadaHa": 22
+}
 
 ---
 
@@ -96,9 +116,7 @@ docker-compose up --build
 
 ### 📘 Swagger (Documentação da API)
 
-```plaintext id="4qk1sc"
-http://localhost:8080/swagger-ui.html
-```
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 ---
 
@@ -106,25 +124,19 @@ http://localhost:8080/swagger-ui.html
 
 #### Health (status da aplicação)
 
-```plaintext id="r1r5gf"
-http://localhost:8080/actuator/health
-```
+[http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
 
 ---
 
 #### Métricas
 
-```plaintext id="jpmndc"
-http://localhost:8080/actuator/metrics
-```
+[http://localhost:8080/actuator/metrics](http://localhost:8080/actuator/metrics)
 
 ---
 
 #### Informações da aplicação
 
-```plaintext id="1g41uv"
-http://localhost:8080/actuator/info
-```
+[http://localhost:8080/actuator/info](http://localhost:8080/actuator/info)
 
 ---
 
