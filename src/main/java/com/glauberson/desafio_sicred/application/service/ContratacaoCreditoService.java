@@ -33,12 +33,28 @@ public class ContratacaoCreditoService {
 
     @Transactional
     public Long contratar(ContratacaoRequest request) {
-
+    	
+    	/*
+    	 	Executa a cadeia de validações (Strategy + Chain of Responsibility)
+        	Aqui são aplicadas todas as regras de negócio necessárias antes da contratação,
+        	como validação de segmento, produto e regras específicas (ex: AGRO e PJ) 
+        */
         validatorChain.executar(request);
-
+        
+        
+        /*
+          	Cria a entidade de domínio a partir do request (Factory Pattern)
+        	Centraliza a lógica de construção do objeto, evitando acoplamento no service
+        */
         OperacaoCredito operacao = operacaoFactory.criar(request);
         operacao = operacaoRepository.save(operacao);
-
+        
+        
+        
+        /* 	
+         	Regra específica para operações do tipo PJ
+        	Caso o segmento seja PJ, deve ser criado um vínculo em tabela separada
+        */
         if ("PJ".equals(request.segmento())) {
             OperacaoCreditoPJ operacaoPJ = pjRepository.save(new OperacaoCreditoPJ(operacao));
         }
